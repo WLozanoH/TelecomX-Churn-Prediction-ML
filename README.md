@@ -39,6 +39,8 @@ Se implementó un modelo base usando `DummyClassifier`, que por defecto predice 
 
 ## 6. Análisis de correlación
 
+![matriz_de_correlacion](https://raw.githubusercontent.com/WLozanoH/TelecomX-Churn-Prediction-ML/main/figures/matriz_de_correlacion_completa.png)
+
 Con el objetivo de identificar las variables más relacionadas con el abandono de clientes, se realizó el siguiente procedimiento:
 - Se aplicó el preprocesador `ColumnTransformer` al conjunto de datos `X` para obtener una versión numérica y estandarizada.
 - Se convirtió la salida a un `DataFrame` incluyendo los nombres de las nuevas columnas generadas por `OneHotEncoder` y se unió con la variable objetivo `y`.
@@ -66,8 +68,10 @@ En esta etapa se evaluaron dos variables clave relacionadas con la cancelación 
 - Se observó que los clientes con contratos cortos tienden a abandonar el servicio con mayor frecuencia. El boxplot muestra que la media de meses de contrato de los que se van (18 meses) es mucho menor que la de los que permanecen (37 meses)
 
 ### Gasto total × Cancelación
+![gráfico_de_boxplot](https://raw.githubusercontent.com/WLozanoH/TelecomX-Churn-Prediction-ML/main/figures/boxplot_gasto_total_x_cancelacion.png)
 - Los clientes que han pagado menos en total (cargo total bajo), son los que mayormente cancelan el servicio. Además se observó una fuerte correlación positiva (r=0.82) entre el tiempo de contrato y el gasto total.
 
+![gráfico_de_scatterplot](https://raw.githubusercontent.com/WLozanoH/TelecomX-Churn-Prediction-ML/main/figures/scatterplot_gasto_total_x_tiempo_contrato.png)
 - El scatterplot mostró que los clientes con contratos más largos acumulan cargos mayores, y a su vez, tienen menor probabilidad de cancelar el servicio.
 
 - Estos hallazgos sugieren que la fidelización de los clientes se relaciona con la duración del contrato y su historial de facturación.
