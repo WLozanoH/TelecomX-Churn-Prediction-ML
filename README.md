@@ -37,7 +37,7 @@ Se implementó un modelo base usando `DummyClassifier`, que por defecto predice 
 - Accuracy: 0.74
 - F1-score clase 1: 0.00 (modelo no predice la clase minoritaria)
 
-### 6. Análisis de correlación
+## 6. Análisis de correlación
 
 Con el objetivo de identificar las variables más relacionadas con el abandono de clientes, se realizó el siguiente procedimiento:
 - Se aplicó el preprocesador `ColumnTransformer` al conjunto de datos `X` para obtener una versión numérica y estandarizada.
@@ -57,3 +57,17 @@ Y correlaciones negativas:
 - `cat__proveedor_de_internet_no` (-0.23)
 
 Este análisis de correlación permite identificar patrones y posibles variables relevantes para el modelado posterior.
+
+## 7. Análisis Dirigido
+
+En esta etapa se evaluaron dos variables clave relacionadas con la cancelación del servicio.
+
+### Tiempo de contrato por cancelación
+- Se observó que los clientes con contratos cortos tienden a abandonar el servicio con mayor frecuencia. El boxplot muestra que la media de meses de contrato de los que se van (18 meses) es mucho menor que la de los que permanecen (37 meses)
+
+### Gasto total × Cancelación
+- Los clientes que han pagado menos en total (cargo total bajo), son los que mayormente cancelan el servicio. Además se observó una fuerte correlación positiva (r=0.82) entre el tiempo de contrato y el gasto total.
+
+- El scatterplot mostró que los clientes con contratos más largos acumulan cargos mayores, y a su vez, tienen menor probabilidad de cancelar el servicio.
+
+- Estos hallazgos sugieren que la fidelización de los clientes se relaciona con la duración del contrato y su historial de facturación.
