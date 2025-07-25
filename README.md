@@ -36,3 +36,24 @@ Se implementó un modelo base usando `DummyClassifier`, que por defecto predice 
 **Resultados**
 - Accuracy: 0.74
 - F1-score clase 1: 0.00 (modelo no predice la clase minoritaria)
+
+### 6. Análisis de correlación
+
+Con el objetivo de identificar las variables más relacionadas con el abandono de clientes, se realizó el siguiente procedimiento:
+- Se aplicó el preprocesador `ColumnTransformer` al conjunto de datos `X` para obtener una versión numérica y estandarizada.
+- Se convirtió la salida a un `DataFrame` incluyendo los nombres de las nuevas columnas generadas por `OneHotEncoder` y se unió con la variable objetivo `y`.
+- Se calculó la **matriz de correlación** usando `pandas.DataFrame.corr()`.
+- Se visualizó la matriz con un **heatmap** y una **máscara triangular** para evitar duplicados visuales.
+- Finalmente, se extrajeron las variables más correlacionadas con la variable objetivo `abandono`.
+
+Algunas variables con mayor correlación positiva con el abandono fueron:
+- `cat__tipo_contrato_month-to-month` (0.39)
+- `cat__proveedor_de_internet_fiber optic` (0.31)
+- `cat__forma_de_pago_electronic check` (0.29)
+
+Y correlaciones negativas:
+- `num__meses_de_contrato` (-0.34)
+- `cat__tipo_contrato_two year` (-0.29)
+- `cat__proveedor_de_internet_no` (-0.23)
+
+Este análisis de correlación permite identificar patrones y posibles variables relevantes para el modelado posterior.
