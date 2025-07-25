@@ -28,3 +28,11 @@ Se implementó un pipeline de preprocesamiento utilizando `ColumnTransformer`, p
 
 
 Esto garantiza que cada tipo de dato sea tratado de forma adecuada antes de entrenar el modelo de machine learning.
+
+## 5. Modelo de Referencia (Baseline)
+
+Se implementó un modelo base usando `DummyClassifier`, que por defecto predice la clase previa(prior). Esto nos permite establecer una métrica mínima que los modelos futuros deben superar.
+
+**Resultados**
+- Accuracy: 0.74
+- F1-score clase 1: 0.00 (modelo no predice la clase minoritaria)
