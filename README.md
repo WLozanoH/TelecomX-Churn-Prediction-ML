@@ -77,12 +77,12 @@ En esta etapa se evaluaron dos variables clave relacionadas con la cancelación 
 - Estos hallazgos sugieren que la fidelización de los clientes se relaciona con la duración del contrato y su historial de facturación.
 
 ## 8. 🧪 Modelado Predictivo y Balanceo de Clases
-- Se utilizó SMOTE y NearMiss para abordar el desbalance de clases(prorción: 74.4% no-abandona vs 25.6% abandona).
+- Se utilizó SMOTE y NearMiss para abordar el desbalance de clases(proporción: 74.4% no-abandona vs 25.6% abandona).
 - Se compararon dos modelos: `RandomForestClassifier` y `KNN` con ambos métodos de remuestreo.
 
 ### 📊 Resultados del mejor modelo
 #### Métricas comparativas
-
+![comparacion_de_modelos](https://raw.githubusercontent.com/WLozanoH/TelecomX-Churn-Prediction-ML/main/figures/comparacion_modelos_por_f1_score.png)
 | Modelo                  | Fase           | Precision | Recall | F1-Score | Accuracy |  
 |-------------------------|----------------|-----------|--------|----------|----------|  
 | SMOTE + RandomForest    | Validación (CV)| 0.4826    | 0.8212 | 0.6080   | 0.7288   |  
@@ -93,3 +93,36 @@ En esta etapa se evaluaron dos variables clave relacionadas con la cancelación 
     - Alto recall (0.79 en test): Detecta mejor los abandonos reales.
     - Balance óptimo(`F1-score` = 0.61).
     - SMOTE preserva información de la clase mayoritaria (Vs NearMiss)
+
+## 9. 🔧 Ajuste de Hiperparámetros con GridSearchCV
+
+Se utilizó `GridSearchCV` con validación cruzada estratificada (5 folds) para encontrar la mejor combinación de hiperparámetros del modelo `RandomForestClassifier`, dentro de un pipeline que incluye preprocesamiento y balanceo con `SMOTE`.
+
+**Espacio de búsqueda**:
+- `n_estimators`: 100, 200
+- `max_depth`: 3, 5, 10
+- `min_samples_split`: 2, 5
+- `min_samples_leaf`: 1, 2
+
+**Mejores hiperparámetros encontrados**:
+| Hiperparámetro              | Valor | Descripción |
+|----------------------------|-------|-------------|
+| `modelo__max_depth`        | 5     | Profundidad máxima del árbol para evitar sobreajuste |
+| `modelo__min_samples_leaf` | 2     | Muestras mínimas en una hoja para suavizar el modelo |
+| `modelo__min_samples_split`| 5     | Muestras mínimas para dividir un nodo |
+| `modelo__n_estimators`     | 100   | Número de árboles del bosque |
+
+---
+
+### 📊 Métricas de Rendimiento del Mejor Modelo
+
+| Clase | Precision | Recall | F1-Score | Interpretación |
+|-------|-----------|--------|----------|----------------|
+| **0 (No abandono)** | 0.90 | 0.76 | 0.82 | Alta precisión, identifica correctamente la mayoría de los clientes fieles |
+| **1 (Abandono)**    | 0.53 | 0.77 | 0.63 | Buen recall: detecta la mayoría de los abandonos reales, aunque con falsos positivos |
+
+**Accuracy general**: 0.76  
+**Macro F1**: 0.73  
+**Weighted F1**: 0.77
+
+Este modelo balancea bien la detección de abandonos reales sin penalizar demasiado la precisión general. A partir de aquí, se procederá a analizar la importancia de variables y optimizar según las más relevantes.
