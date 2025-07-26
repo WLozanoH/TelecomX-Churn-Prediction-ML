@@ -75,3 +75,21 @@ En esta etapa se evaluaron dos variables clave relacionadas con la cancelación 
 - El scatterplot mostró que los clientes con contratos más largos acumulan cargos mayores, y a su vez, tienen menor probabilidad de cancelar el servicio.
 
 - Estos hallazgos sugieren que la fidelización de los clientes se relaciona con la duración del contrato y su historial de facturación.
+
+## 8. 🧪 Modelado Predictivo y Balanceo de Clases
+- Se utilizó SMOTE y NearMiss para abordar el desbalance de clases(prorción: 74.4% no-abandona vs 25.6% abandona).
+- Se compararon dos modelos: `RandomForestClassifier` y `KNN` con ambos métodos de remuestreo.
+
+### 📊 Resultados del mejor modelo
+#### Métricas comparativas
+
+| Modelo                  | Fase           | Precision | Recall | F1-Score | Accuracy |  
+|-------------------------|----------------|-----------|--------|----------|----------|  
+| SMOTE + RandomForest    | Validación (CV)| 0.4826    | 0.8212 | 0.6080   | 0.7288   |  
+| SMOTE + RandomForest    | Test           | 0.4975    | 0.7947 | 0.6120   | 0.7364   | 
+
+#### 🔎Conclusión:
+- El modelo `SMOTE + RandomForest` fue seleccionado porque:
+    - Alto recall (0.79 en test): Detecta mejor los abandonos reales.
+    - Balance óptimo(`F1-score` = 0.61).
+    - SMOTE preserva información de la clase mayoritaria (Vs NearMiss)
