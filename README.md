@@ -23,7 +23,7 @@ Antes de entrenar el modelo, se realizó lo siguiente:
 
 Se implementó un pipeline de preprocesamiento utilizando `ColumnTransformer`, permitiendo aplicar transformaciones específicas a cada tipo de variable:
 - `OneHotEncoder`: para variables categóricas.
-- `StandarScaler`: para variables numéricas.
+- `StandardScaler`: para variables numéricas.
 - variables binarias: se mantienen sin cambios.
 
 
@@ -180,4 +180,77 @@ Este modelo balancea bien la detección de abandonos reales sin penalizar demasi
 
 3. **Métricas de Seguimiento**  
    - 📉 Meta: Reducir abandono mensual a <35% en 6 meses  
-   - ✅ Conversión contratos mensuales→anuales (+25% trimestral)  
+   - ✅ Conversión contratos mensuales→anuales (+25% trimestral) 
+
+## 12. 🧠 Modelo Champion Serializado
+
+El modelo final optimizado (modelo champion) fue serializado para permitir su reutilización en producción o futuros análisis.
+
+### 🔧 Especificaciones Técnicas
+
+**Arquitectura del Modelo**
+```python
+RandomForestClassifier(
+    n_estimators=100,
+    max_depth=5,
+    min_samples_split=5,
+    min_samples_leaf=2,
+    random_state=42
+)
+
+Selección de Features
+
+- Top 15 variables por importancia
+- Lista exacta conservada en el artefacto serializado
+
+Rendimiento (test set)
+
+Métrica	Valor
+---------------------
+Accuracy	    |0.76
+Precision (avg)	|0.53
+Recall    (avg)	|0.76
+F1-score  (avg)	|0.62
+```
+### 🚀 Cómo usarlo
+
+```
+import pickle
+
+# Cargar modelo
+with open('modelo_champion.pkl', 'rb') as f:
+    artefacto = pickle.load(f)
+
+## 🧪 Prueba rápida del modelo
+
+python
+import pandas as pd
+
+# Supongamos que tienes nuevos datos procesados
+nuevos_datos = pd.read_csv("nuevos_clientes.csv")
+
+# Predicción
+datos_procesados = artefacto['preprocesador'].transform(nuevos_datos)
+predicciones = artefacto['modelo'].predict(datos_procesados[artefacto['features']])
+
+print(predicciones)
+```
+
+## 📥 Instalación y Uso
+
+Para clonar y ejecutar este proyecto:
+
+```bash
+git clone https://github.com/WLozanoH/TelecomX-Churn-Prediction-ML.git
+cd TelecomX-Churn-Prediction-ML
+pip install -r requirements.txt
+```
+
+### 👨💻 Autor
+## Wilmer Lozano Huamán
+📊 Especialista en Análisis de Datos |  Científico de Datos
+
+🔗 [GitHub](https://github.com/WLozanoH) | 📧 [Contacto](mailto:wglozanoh@gmail.com)
+
+### 📄 Licencia
+`MIT`- libre uso con atribución
