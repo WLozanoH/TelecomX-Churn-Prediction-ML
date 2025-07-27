@@ -153,3 +153,31 @@ Este modelo balancea bien la detección de abandonos reales sin penalizar demasi
 - Se evita el sobreajuste y se mejora la interpretabilidad.
 
 ![grafico_top_15_variables_mas_importantes](https://raw.githubusercontent.com/WLozanoH/TelecomX-Churn-Prediction-ML/main/figures/top_15_variables_mas_importantes.png)
+
+
+## 11. 🔍 Conclusiones Finales y Plan de Acción
+
+### 📌 Hallazgos Clave (Respaldados por Datos)
+
+| Factor de Riesgo         | Tasa Abandono | Riesgo Comparativo | Acciones Prioritarias |
+|--------------------------|---------------|--------------------|-----------------------|
+| **Contratos mensuales**  | 40.8%         | 13.6x vs bianuales | Descuentos progresivos (5-10%) |
+| **Fibra óptica**         | 40.6%         | 2.2x vs DSL        | Soporte 24/7 + encuestas tempranas |
+| **Pago electrónico**     | 43.5%         | 2.7x vs transferencias | Confirmación por WhatsApp + pagos recurrentes |
+| **Primer mes**           | 59.2%         | -                  | Onboarding personalizado en 7 días |
+
+### 🚀 Recomendaciones Ejecutivas
+
+1. **Paquete Anti-Churn**  
+   - 💰 Descuentos escalonados por permanencia (3er y 6to mes)  
+   - 📲 Confirmación automática de pagos vía WhatsApp  
+   - 🛠️ Auditoría técnica trimestral para fibra óptica  
+
+2. **Programa de Onboarding**  
+   - 👋 Sesión personalizada en primera semana  
+   - 🎁 Beneficio exclusivo al firmar contrato anual  
+   - 🔍 Monitoreo especial primeros 90 días  
+
+3. **Métricas de Seguimiento**  
+   - 📉 Meta: Reducir abandono mensual a <35% en 6 meses  
+   - ✅ Conversión contratos mensuales→anuales (+25% trimestral)  
