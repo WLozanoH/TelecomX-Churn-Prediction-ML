@@ -126,3 +126,30 @@ Se utilizó `GridSearchCV` con validación cruzada estratificada (5 folds) para 
 **Weighted F1**: 0.77
 
 Este modelo balancea bien la detección de abandonos reales sin penalizar demasiado la precisión general. A partir de aquí, se procederá a analizar la importancia de variables y optimizar según las más relevantes.
+
+## 🧠 10. Variables más importantes
+
+### Paso 1. Extracción de importancias
+- Se extrajeron las importancias del modelo `RandomForest` entrenado con hiperparámetros óptimizados y balanceo con `SMOTE`, utilizando el atributo `feature_importances_`.
+- Las variables fueron transformadas previamente mediante un pipeline con `ColumnTransformer`, lo que permitió identificar las más influyentes.
+
+### Paso 2: Evaluación con Selección de Variables
+- Se entrenaron modelos aumentando progresivamente la selección de variables, para evaluar si se mantiene el rendimiento.
+
+#### Métricas de rendimiento según la cantidad de variables usadas:
+
+| Variables | F1   | Precision | Recall | Accuracy |
+|-----------|------|-----------|--------|----------|
+| 5         | 0.613| 0.506     | 0.779  | 0.743    |
+| 10        | 0.620| 0.527     | 0.753  | 0.758    |
+| **15**    | **0.624**| **0.527** | **0.763** | **0.759** |
+| 20        | 0.615| 0.518     | 0.755  | 0.752    |
+| 25        | 0.619| 0.524     | 0.758  | 0.756    |
+
+📌 **Conclusiones:**
+- **15 variables** es el punto óptimo: alto F1 (0.624) y Recall (0.763).
+- Más variables no mejoran el rendimiento y pueden introducir ruido.
+- Buen balance entre precisión y recall.
+- Se evita el sobreajuste y se mejora la interpretabilidad.
+
+![grafico_top_15_variables_mas_importantes](https://raw.githubusercontent.com/WLozanoH/TelecomX-Churn-Prediction-ML/main/figures/top_15_variables_mas_importantes.png)
