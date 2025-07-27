@@ -1,4 +1,48 @@
 # Telecom X - Parte 2: Predicción de Cancelación (Churn)
+![Python](https://img.shields.io/badge/python-3.10-blue.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+## 🔍 Resumen Ejecutivo
+- **Problema**: 25.6% de tasa de cancelación en clientes de Telecom X . 
+- **Solución**: Modelo predictivo con 76% de precisión y 79% de recall.
+- **Impacto esperado**: Reducción proyectada del abandono mensual del 25.6% al 17% en 6 meses mediante modelos ML.
+
+## 📊 Resultados Clave
+| Métrica | Valor | Benchmark |
+|---------|-------|-----------|
+| Recall | 0.79 | Detecta 79% de abandonos reales |
+| Precisión | 0.53 | Reduce falsas alarmas |
+| F1-Score | 0.62 | Balance óptimo |
+
+## 🗂️ Estructura del Proyecto
+
+- **TelecomX-Churn-Prediction-ML/**
+  - 📁 **figures/**  
+    Gráficos y visualizaciones generadas.
+  - 📁 **notebooks/**  
+    Contiene notebooks para EDA, modelado y evaluación.
+    - 📄 `churn_model.ipynb` — Notebook principal del proyecto.
+  - 📄 `modelo_champion.pkl` — Modelo final entrenado y serializado con Pickle.
+  - 📄 `requirements.txt` — Archivo de dependencias del entorno.
+  - 📄 `README.md` — Documentación general del proyecto.
+
+🛠️ **Tecnologías y Herramientas Utilizadas**
+-
+- Python 3.10
+- Jupyter Notebook
+- Pandas & NumPy
+- Scikit-learn (Modelado y Métricas)
+- Imbalanced-learn (SMOTE, NearMiss)
+- Matplotlib & Seaborn (Visualización)
+- GridSearchCV (Optimización de Hiperparámetros)
+- Pickle (Serialización de modelos)
+
+## ⚡ Inicio rápido
+```
+git clone https://github.com/WLozanoH/TelecomX-Churn-Prediction-ML.git
+cd TelecomX-Churn-Prediction-ML
+pip install -r requirements.txt
+```
 
 ## 📘1. Introducción
 Este proyecto forma parte de la segunda etapa del [proyecto de análisis de cancelación de clientes en Telecom X](https://github.com/WLozanoH/TelecomX-Data-Science-AL/blob/main/TelecomX.ipynb).
@@ -246,11 +290,19 @@ cd TelecomX-Churn-Prediction-ML
 pip install -r requirements.txt
 ```
 
-### 👨💻 Autor
-## Wilmer Lozano Huamán
+### 👨‍💻 Autor: Wilmer Lozano Huamán
 📊 Especialista en Análisis de Datos |  Científico de Datos
 
-🔗 [GitHub](https://github.com/WLozanoH) | 📧 [Contacto](mailto:wglozanoh@gmail.com)
+🔗 [GitHub](https://github.com/WLozanoH) | 📧 [Contacto](mailto:wglozanoh@gmail.com) | 🔗 [LinkedIn](https://www.linkedin.com/in/wilmerlozanohuaman/)
 
 ### 📄 Licencia
-`MIT`- libre uso con atribución
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)- libre uso con atribución
+
+## 🤝 Cómo Contribuir
+¿Tienes ideas para mejorar este proyecto? ¡Las contribuciones son bienvenidas!
+
+1. Haz un fork del repositorio
+2. Crea una rama (`git checkout -b feature-nueva`)
+3. Realiza tus cambios y haz commit (`git commit -m 'Agrega nueva funcionalidad'`)
+4. Haz push a tu rama (`git push origin feature-nueva`)
+5. Abre un Pull Request
